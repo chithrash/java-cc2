@@ -1,0 +1,156 @@
+program1:
+public class StringArraySort
+{
+public static void main(String[] args)
+{
+String[] stringArray = {"Banana", "Apple", "Orange", "Grape", "Kiwi"};
+for (int i =0; i < stringArray.length - 1; i++)
+{
+for (int j = i + 1; j < stringArray.length; j++)
+{
+if (stringArray[i].compareTo(stringArray[j]) > 0)
+{
+String temp = stringArray[i];
+stringArray[i] = stringArray[j];
+stringArray[j] = temp;
+}
+}
+}
+System.out.println("Sorted String Array: " + Arrays.toString(stringArray));
+}
+}
+
+program 2:
+
+import java.util.Scanner;
+public class CharacterOccurrenceCounter {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+System.out.print("Enter a string: ");
+String inputString = scanner.nextLine();
+System.out.print("Enter the character to count: ");
+char targetCharacter = scanner.next().charAt(0);
+int count = countOccurrences(inputString, targetCharacter);
+System.out.println("Occurrences of '" + targetCharacter + "' in the string: " + count);
+}
+private static int countOccurrences(String inputString, char targetCharacter) {
+int count = 0;
+for (char c : inputString.toCharArray()) {
+if (c == targetCharacter) {
+count++;
+}
+}
+return count;
+}
+}
+
+program 3:
+
+import java.util.*;
+public class ArrayL
+{
+ArrayList<String> list=new ArrayList<String>(); //Creating arraylist
+public void arraydisplay()
+{
+list.add("CSE");
+list.add("ISE");
+list.add("ME");
+System.out.println("ArrayList element are");
+System.out.println(list);
+System.out.println("");
+}
+public void appendatend()
+{
+System.out.println("Enter the element to append at end");
+Scanner scob1=new Scanner(System.in);
+String ele=scob1.next();
+list.add(ele);
+System.out.println(list);
+System.out.println("");
+}
+public void insertatpos()
+{
+System.out.println("Enter the position and element to insert");
+Scanner scob1=new Scanner(System.in);
+int posind=scob1.nextInt();
+String ele=scob1.next();
+list.add(posind,ele);
+System.out.println(list);
+System.out.println("");
+}
+public void searchele()
+{
+System.out.println("Enter the Array element to search");
+Scannerscobj=new Scanner(System.in);
+String arele=scobj.next();
+int in=list.indexOf(arele);
+if(in==-1)
+{
+System.out.println("Element not found");
+}
+else
+{
+System.out.println("Element found at "+in);
+}
+}
+void print()
+{
+System.out.println("Enter the starting charecter to print strings");
+Scanner nip=new Scanner(System.in);
+char inputc=nip.next().charAt(0);
+String strc=Character.toString(inputc);
+System.out.println("String starting with character "+strc);
+for(int i=0;i<list.size();i++)
+{
+if(list.get(i).startsWith(strc))
+{
+System.out.println(list.get(i));
+}
+}
+}
+public static void main(String args[])
+{
+ArrayL obj=new ArrayL();
+obj.arraydisplay();
+obj.appendatend();
+obj.insertatpos();
+obj.searchele();
+obj.print();
+}
+}
+
+program4:
+import java.util.ArrayList;
+import java.util.Scanner;
+public class ArrayListExample {
+public static void main(String[] args) {
+ArrayList<String> namesList = new ArrayList<>();
+Scanner scanner = new Scanner(System.in);
+for (int i = 1; i <= 3; i++) {
+System.out.print("Enter name " + i + ": ");
+String name = scanner.nextLine();
+namesList.add(name);
+}
+System.out.println("Number of elements in the ArrayList: " + namesList.size());
+for (int i = 4; i <= 5; i++) {
+System.out.print("Enter name " + i + ": ");
+String name = scanner.nextLine();
+namesList.add(name);
+}
+System.out.println("Number of elements in the updated ArrayList: " + namesList.size());
+System.out.println("Names in the ArrayList:");
+for (String name : namesList) 
+loop
+{ 
+System.out.println(name);
+}
+System.out.print("Enter a name to remove: ");
+String nameToRemove = scanner.nextLine();
+namesList.remove(nameToRemove);
+System.out.println("Names in the updated ArrayList:");
+for (String name : namesList) {
+System.out.println(name);
+}
+scanner.close();
+}
+}
