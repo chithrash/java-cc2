@@ -1,0 +1,135 @@
+5program:
+uri->uniform resource identifier
+-text to implicit intent
+-we need 3 bottons
+1st button-open web.id=b1
+2nd button-open call,id=b2
+3rd button-open map,id=b3
+
+-go to xml code -->in button1
+android:onclick="openweb"press alt +enter
+
+→Again to the code button2
+
+android: onClick = "open call".
+
+Again to code button 3
+
+android: onclick = "open map"
+
+→Under public void open web{
+
+Intent i2 = new Intent (Intent. ACTION_VIEW.uri
+
+Prase ("http://www.google.com"));
+start Activity(i1);
+-->same for i2&i3.
+-->prase("tel:
+Start Activity (i2);
+}
+-->prase("tel:
+i3:
+Activity(i3);
+
+-->for open map
+
+Go to google-->longitude & lattitude by ↓ banglore copy&paste)
+
+→ then Execute the program.
+
+code:
+package com.example.application5;
+
+import android appcompact app.AppCompact
+
+import android.content. Intent:
+
+Import android • net.uri
+
+import android.os.Bundle;
+
+import android view. views
+
+public class main Activity extends Appcompat Activity{
+@override
+
+protected void onCreate(Bundle saved Instance state){
+
+super.oncreate (saved Instance state);
+
+Set Content view (R.layout.activity-main);
+}
+
+public void openweb (view view){
+
+Intent i1 = new(Intent. ACTION-VIEW.parse(https ://www. google com"));
+
+Start Activity (i1);
+}
+public void opencall (view view){
+
+Intent i2 = new intent (Intent.ACTION-VIEW.parse("tel"));
+
+Start Activity (i2);
+}
+public void Openmap (view view){
+
+intent i3 = new intent (intent. ACTION - VIEW.Uristart Activity (i3);
+
+}
+}
+
+
+
+program:6
+
+create an Application.
+
+-->take a text view -->login Activity -->constraint.
+
+→In the first activity change hello world to login Activity
+
+-->Drop a plain text--> Go to code
+
+hint--> "enter username" and "password" refactor them with b1
+
+→drop a button change name to login & refactor with by.
+
+-->Go to code and create onclick listner.
+
+→ In the first Activity -->dotask method.
+
+-->write if-else statement before this → create 2nd activity
+
+-->drop textview and write welcome
+
+program 7:
+
+-->change the hello world to a simple calculator
+
+→drag and drop two plain text hint "no1" and no2 and refactoring with the name as e1&e2
+
+→ drag and drop a text view giving no name& refactoring with +.
+
+- drop 4 button +,-,*,/
+
+→ going to all the buttons and creating the do task fee Cadd,sub,mul,div)
+
+→finally then Run the code.
+
+program:8
+
+→ change hello word to text to speech.
+
+→drag and drop a plain text, refactor it to e& create a hint
+
+→drag and drop a button and change the name to click
+
+-->Go to code cercate onclick="Voice" of button.
+
+-->in java code create an object of →  Text to speech and.
+
+-->Implemant the code
+
+-->Run the code.
+
