@@ -1,0 +1,303 @@
+program:5
+in xml code:
+-we need 3 bottons
+1st button-open web.id=b1
+2nd button-open call,id=b2
+3rd button-open map,id=b3
+
+-go to xml code -->in button1
+android:onclick="openweb"press alt +enter
+
+→Again to the code button2
+
+android: onClick = "open call".
+
+Again to code button 3
+
+android: onclick = "open map"
+
+
+MainActivity.java:
+
+package com.example.application5;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void openweb(View view) {
+        Intent i1=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        startActivity(i1);
+    }
+
+    public void opencall(View view) {
+        Intent i2=new Intent(Intent.ACTION_VIEW, Uri.parse("tel:6567567675"));
+        startActivity(i2);
+    }
+
+    public void openmap(View view) {
+        Intent i3=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:20.5937,78.9629"));
+        startActivity(i3);
+    }
+}
+
+
+program 6:
+
+-->take a text view -->login Activity -->constraint.
+
+→In the first activity change hello world to login Activity
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+
+
+-->Drop a plain text--> Go to code
+
+hint--> "enter username" and "password" refactor them with b1
+ android:id="@+id/e2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPersonName"
+
+<Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:onClick="dotask"
+
+
+
+→drop a button change name to login & refactor with by.
+
+-->Go to code and create onclick listner.
+
+
+→ In the first Activity -->dotask method.
+
+-->write if-else statement before this → create 2nd activity
+
+-->drop textview and write welcome
+
+
+MainActivity.java:
+package com.example.application6;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    EditText unm,pw;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        unm=(EditText) findViewById(R.id.e1);
+        pw=(EditText) findViewById(R.id.e2);
+    }
+
+    public void dotask(View view) {
+        if(unm.getText().toString().equals("Admin")&&pw.getText().toString().equals("1234"))
+        {
+            Intent i1=new Intent(this,Second.class);
+            startActivity(i1);
+        }
+        else
+        {
+            Toast.makeText(this,"Login unsuccessful",Toast.LENGTH_LONG).show();
+        }
+    }
+}
+
+Second.java:
+package com.example.application6;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Second extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+    }
+}
+
+
+program7:
+
+-->change the hello world to a simple calculator
+
+→drag and drop two plain text hint "no1" and no2 and refactoring with the name as e1&e2
+
+→ drag and drop a text view giving no name& refactoring with +.
+
+- drop 4 button +,-,*,/
+
+→ going to all the buttons and creating the do task fee Cadd,sub,mul,div)
+
+→finally then Run the code.
+
+xml code:
+<EditText
+android:ems="10"
+android:hint="number1"
+
+<EditText
+android:ems="10"
+android:hint="number2"
+
+<Button
+android:id="@+id/button"
+under
+android:layout_height="43dp"
+        android:text="+"
+        android:onClick="Add"
+same to
+android:text="-"
+        android:onClick="Sub"
+
+*,/ too
+
+
+MainActivity.java:
+package com.example.application7;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    EditText edt1,edt2;
+    TextView output;
+    int number1,number2;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        edt1=(EditText) findViewById(R.id.e1);
+        edt2=(EditText) findViewById(R.id.e2);
+        output=(TextView) findViewById(R.id.t1);
+    }
+
+    public void Add(View view) {
+        number1=Integer.parseInt(edt1.getText().toString());
+        number2=Integer.parseInt(edt2.getText().toString());
+        output.setText(String.valueOf(number1+number2));
+    }
+
+    public void Sub(View view) {
+        number1=Integer.parseInt(edt1.getText().toString());
+        number2=Integer.parseInt(edt2.getText().toString());
+        output.setText(String.valueOf(number1-number2));
+    }
+
+    public void Mul(View view) {
+        number1=Integer.parseInt(edt1.getText().toString());
+        number2=Integer.parseInt(edt2.getText().toString());
+        output.setText(String.valueOf(number1*number2));
+    }
+
+    public void Div(View view) {
+        number1=Integer.parseInt(edt1.getText().toString());
+        number2=Integer.parseInt(edt2.getText().toString());
+        output.setText(String.valueOf(number1/number2));
+    }
+}
+
+
+program:8
+
+→ change hello word to text to speech.
+
+→drag and drop a plain text, refactor it to e& create a hint
+
+→drag and drop a button and change the name to click
+
+-->Go to code cercate onclick="Voice" of button.
+
+-->in java code create an object of →  Text to speech and.
+
+-->Implemant the code
+
+-->Run the code.
+
+<Edit
+android:ems="10"
+        android:hint="Enter your Text"
+        android:minHeight="48dp"
+ <Button
+android:backgroundTint="#FFBE1A"
+        android:onClick="voice"
+        android:text="Click Here"
+
+MainActivity.java
+package com.example.Application8;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity
+{
+
+    EditText edt;
+    TextToSpeech tts;
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        edt = (EditText) findViewById(R.id.e1);
+
+    }
+    public void voice(View view)
+    {
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener()
+                {
+                    @Override
+                    public void onInit(int i)
+                    {
+                        if (i == TextToSpeech.SUCCESS)
+                        {
+                            tts.speak(textData.getText().toString(), TextToSpeech.QUEUE_ADD, null, null);
+                        }
+                    }
+
+                });
+    }
+}
+
+
+
+
