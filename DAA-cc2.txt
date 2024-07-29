@@ -1,0 +1,356 @@
+program 3:
+#include<stdio.h> 
+#include<conio.h> 
+#include<stdlib.h> 
+int n,c[20][20],i,j,visited[20]; 
+void prims(); 
+void prims() 
+{ 
+int min,a,b,k,count=0,cost=0; 
+visited[1]=1; 
+while(count<n-1) 
+{ 
+min=999; 
+for(i=1;i<=n;i++) 
+{ 
+for(j=1;j<=n;j++) 
+{ 
+if((visited[i]) && (!visited[j]) && (min>c[i][j])) 
+{ 
+min=c[i][j]; 
+a=i; 
+b=j; 
+} 
+} 
+} 
+printf("%d---> %d=%d\n",a,b,c[a][b]); 
+cost+=c[a][b]; 
+visited[b]=1; 
+count++; 
+} 
+printf("total cost is %d",cost); 
+} 
+void main() 
+{ 
+clrscr(); 
+printf("enter the number of nodes in the graph\n"); 
+scanf("%d",&n); 
+printf("entr the cost adjacency matrix\n"); 
+for(i=1;i<=n;i++) 
+{ 
+for(j=1;j<=n;j++) 
+scanf("%d",&c[i][j]); 
+visited[i]=0; 
+} 
+prims(); 
+getch(); 
+} 
+
+OUTPUT:enter the number of nodes in the graph 
+6 
+enter the cost adjacency matrix 
+999 3 999 999 6 5 
+3 999 1 6 999 4 
+999 1 999 6 999 4 
+999 6 6 999 8 5 
+6 999 999 8 999 2 
+5 4 4 5 2 999 
+1--->2=3 
+2--->3=1 
+2--->6=4 
+6--->5=2 
+6--->4=5 
+total cost is 15
+
+
+program 4:
+
+#include<stdio.h> 
+#include<conio.h> 
+int minm(int m,int n) 
+{ 
+return ((m>n)?n:m); 
+} 
+void sssp(int cost[20][20],int n,int source,int dest[20]) 
+{ 
+int s[20],min,w,i,j,v; 
+for(i=1;i<=n;i++) 
+{ 
+s[i]=0; 
+dest[i]=cost[source][i]; 
+} 
+s[source]=1; 
+for(i=1;i<=n-1;i++) 
+{ 
+min=999; 
+for(j=1;j<=n;j++) 
+if((s[j]==0) && (min>dest[j])) 
+{ 
+min=dest[j]; 
+w=j; 
+} 
+s[w]=1; 
+for(v=1;v<=n;v++) 
+if(s[v]==0) 
+{ 
+dest[v]=minm(dest[v],(dest[w]+cost[w][v])); 
+} 
+} 
+} 
+void main() 
+{ 
+int source,i,j,n; 
+int cost[20][20],dest[20]; 
+clrscr(); 
+printf("enter no of vertices\n"); 
+scanf("%d",&n); 
+printf("enter source vertex\n"); 
+scanf("%d",&source); 
+printf("enter cost matrix\n"); 
+for(i=1;i<=n;i++) 
+for(j=1;j<=n;j++) 
+scanf("%d",&cost[i][j]); 
+sssp(cost,n,source,dest); 
+printf(":the shortest distance is \n");for(i=1;i<=n;i++) 
+printf("the cost from %d to %d is %d\t", source,i,dest[i]); 
+getch(); 
+} 
+OUTPUT 
+enter no of vertices 
+5 
+enter source vertex 
+1 
+enter cost matrix 
+0 1 999 3 10 
+999 0 5 999 999 
+999 999 0 999 1 
+999 999 2 0 6 
+999 999 999 999 0 
+the shortest distance is 
+the cost from 1 to 1 is 0 
+the cost from 1 to 2 is 1 
+the cost from 1to 3 is 5 
+the cost from 1 to 4 is 3 
+the cost from 1 to 5 is 6
+
+
+program:5
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void dfs(int u,int n,int a[][10],int s[]);
+void read_data(int n,int a[][10]);
+int checkon(int n,int a[][10]);
+void read_data(int n,int a[][10])
+{
+int i,j;
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+scanf("%d",&a[i][j]);
+}
+}
+}
+void dfs(int u,int n,int a[][10],int s[])
+{
+int v;
+s[u]=1;
+for(v=0;v<n;v++)
+{
+if((a[u][v]==1)&&(s[v]==0))
+{
+dfs(v,n,a,s);
+}
+}
+}
+int checkon(int n,int a[][10])
+{
+int i,j,flag,s[10],sol[10][10];
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+s[j]=0;
+}
+dfs(i,n,a,s);
+for(j=0;j<n;j++)
+sol[i][j]=s[j]; }
+flag=1;
+for(i=0;i<n;i++)
+{
+for(j=0;j<n;j++)
+{
+if((sol[i][j]==0) && (sol[j][i]==0))
+{
+flag=0;
+}
+}
+}
+return flag;
+}
+void main()
+{
+int result,n,a[10][10];;
+clrscr();
+printf("enter the number of nodes\n");
+scanf("%d",&n);
+printf("enter the adjacency matrix\n");
+read_data(n,a);
+result=checkon(n,a);
+if(result==1)
+printf("the graph is connected\n");
+else
+printf("the graph is not connected\n");
+getch();
+}
+OUTPUT 1:
+enter the number of nodes
+4
+enter the adjacency matrix
+0 1 0 1
+1 0 1 0
+0 1 0 1
+1 0 1 0
+the graph is connected
+OUTPUT 2:
+enter the number of nodes
+4
+enter the adjacency matrix
+0 1 1 0
+1 0 1 0
+1 1 0 0
+0 0 0 0
+the graph is not connected
+
+program:6
+
+#include<stdio.h>
+#include<conio.h>
+int p[10],w[10],n;
+int g(int i,int m)
+{
+if((i==n)&&(w[i]<=m))
+return p[i];
+if((i==n)&&(w[i]>m))
+return 0;
+if(w[i]>m)
+return g(i+1,m);
+return max(g(i+1,m),g(i+1,m-w[i])+p[i]);
+}
+int max(int a,int b)
+{
+return(a>b)?a:b;
+}
+void main()
+{
+int i,m,profit;
+clrscr();
+printf("Enter number of objects\n");
+scanf("%d",&n);
+printf("Enter weight & profit\n");
+for(i=1;i<=n;i++)
+{
+scanf("%d%d",&w[i],&p[i]);
+}
+printf("Enter Knapsack capacity\n");
+scanf("%d",&m);
+profit=g(1,m);
+printf("Maximum profit earned = %d\n",profit);
+getch();
+}
+OUTPUT
+Enter number of objects
+3
+Enter weight & profit
+100 20
+14 18
+10 15
+Enter Knapsack capacity
+116
+Maximum profit ear
+
+program:7
+
+#include<stdio.h> 
+int n,c[10][10],i,j,k,d[10][10]; 
+void read_data(); 
+void write_data(); 
+void floyd(); 
+void main() 
+{ 
+printf("enter no.of nodes\n"); 
+scanf("%d",&n); 
+printf("enter the cost adjacency matrix\n"); 
+read_data(); 
+floyd(c,n); 
+write_data(); 
+} 
+void read_data() 
+{ 
+for(i=1;i<=n;i++) 
+{ 
+for(j=1;j<=n;j++) 
+{ 
+scanf("%d",&c[i][j]); 
+} 
+} 
+} 
+void floyd(int c[10][10],int n) 
+{ 
+int min(int,int); 
+for(i=1;i<=n;i++) 
+{ 
+for(j=1;j<=n;j++) 
+{ 
+d[i][j]=c[i][j]; 
+} 
+} 
+for(k=1;k<=n;k++) 
+{ 
+for(i=1;i<=n;i++) 
+{ 
+for(j=1;j<=n;j++) 
+{ 
+d[i][j]=min(d[i][j],d[i][k]+d[k][j]); 
+} 
+} 
+} 
+} 
+void write_data() 
+{ 
+printf("the distance matrix is shown below\n"); for(i=1;i<=n;i++) 
+{ 
+for(j=1;j<=n;j++) 
+{ 
+printf("%d\t",d[i][j]); 
+} 
+printf("\n"); 
+} 
+} 
+int min(int a,int b) 
+{ 
+return a<b?a:b; 
+} 
+OUTPUT 
+enter the number of nodes 
+4 
+enter the cost adjacency matrix 
+0 5 999 2 
+999 0 6 999 
+999 999 0 3 
+999 1 999 0 
+the distance matrix is shown below 
+0 3 9 2 
+999 0 6 9 
+999 4 0 3 
+999 1 7 0 
+5 
+2 
+1 
+1 
+2 
+3 
+4
+
