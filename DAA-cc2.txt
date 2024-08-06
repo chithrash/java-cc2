@@ -1,3 +1,121 @@
+program1:
+#include <stdio.h>
+#include <stdlib.h>
+
+void simple_merge(int a[], int low, int mid, int high) {
+    int i = low;
+    int j = mid + 1;
+    int k = low;
+    int c[high - low + 1];
+
+    while (i <= mid && j <= high) {
+        if (a[i] < a[j]) {
+            c[k - low] = a[i];
+            i++;
+        } else {
+            c[k - low] = a[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i <= mid) {
+        c[k - low] = a[i];
+        i++;
+        k++;
+    }
+
+    while (j <= high) {
+        c[k - low] = a[j];
+        j++;
+        k++;
+    }
+
+    for (i = low; i <= high; i++) {
+        a[i] = c[i - low];
+    }
+}
+
+void merge_sort(int a[], int low, int high) {
+    int mid;
+    if (low < high) {
+        mid = (low + high) / 2;
+        merge_sort(a, low, mid);
+        merge_sort(a, mid + 1, high);
+        simple_merge(a, low, mid, high);
+    }
+}
+
+int main() {
+    int a[10], n, i;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter the elements:\n");
+
+program2:
+#include<stdio.h>
+#include<conio.h>
+void simple_merge(int a[],int low,int mid,int high){
+	int i=low;
+	int j=mid+1;
+	int k=low;
+	int c[10];
+	while(i<=mid&&j<=high){
+		if(a[i]<a[j]){
+			c[k]=a[i];
+			i++;
+			k++;
+		}
+		else{
+			c[k]=a[j];
+			j++;
+			k++;
+		}
+	}
+	while(i<=mid){
+		c[k++]=a[i++];
+	}
+	while(j<=high){
+		c[k++]=a[j++];
+	}
+	for(i=low;i<=high;i++){
+		a[i]=c[i];
+	}
+}
+void merge_sort(int a[],int low,int high){
+	int mid;
+	if(low<high){
+		mid=(low+high)/2;
+		merge_sort(a,low,mid);
+		merge_sort(a,mid+1,high);
+		simple_merge(a,low,mid,high);
+	}
+}
+int main(){
+	int a[10],n,i;
+	printf("enter no of elements\n");
+	scanf("%d",&n);
+	for(i=0;i<n;i++){
+		scanf("%d",&a[i]);
+	}
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+	printf("elements before sorting\n");
+	for(i=0;i<n;i++){
+		printf("%d\t",a[i]);
+	}
+	merge_sort(a,0,n-1);
+	printf("sorted elements\n");
+	for(i=0;i<n;i++)
+	printf("%d\t",a[i]);
+}
+
+
+
+
+
+
 program 3:
 #include<stdio.h> 
 #include<conio.h> 
