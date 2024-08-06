@@ -1,59 +1,65 @@
-program1:
-#include <stdio.h>
-#include <stdlib.h>
-
-void simple_merge(int a[], int low, int mid, int high) {
-    int i = low;
-    int j = mid + 1;
-    int k = low;
-    int c[high - low + 1];
-
-    while (i <= mid && j <= high) {
-        if (a[i] < a[j]) {
-            c[k - low] = a[i];
-            i++;
-        } else {
-            c[k - low] = a[j];
-            j++;
-        }
-        k++;
-    }
-
-    while (i <= mid) {
-        c[k - low] = a[i];
-        i++;
-        k++;
-    }
-
-    while (j <= high) {
-        c[k - low] = a[j];
-        j++;
-        k++;
-    }
-
-    for (i = low; i <= high; i++) {
-        a[i] = c[i - low];
-    }
+program:1
+#include<stdio.h>
+#include<conio.h>
+void qsort(int low,int high,int a[]);
+int partition(int low,int high,int a[]);
+int main(){
+	int i,n,a[10],low,high;
+	printf("Enter the no of elements\n");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	scanf("%d",&a[i]);
+    printf("\nElements before sorting\n");
+    for(i=0;i<n;i++)
+	printf("%d",a[i]);
+	qsort(0,n-1,a);
+	printf("\n Elements after sorting\n");
+	for(i=0;i<n;i++)
+	printf("%d\t",a[i]);
+}
+void qsort(int low,int high,int a[]){
+	int mid;
+	if(low<high){
+		mid=partition(low,high,a);
+		qsort(low,mid-1,a);
+		qsort(mid+1,high,a);
+	}
+}
+int partition(int low,int high,int a[]){
+	int key,i,j,temp;
+	key=a[low];
+	i=low+1;
+	j=high;
+	while(1){
+		while(i<=high&& a[i<key])
+		i++;
+		while(a[j]>key)
+		j--;
+		if(i<j){
+			temp=a[i];
+			a[i]=a[j];
+			a[j]=temp;
+		}
+	
+		else
+		{
+			temp=a[low];
+			a[low]=a[j];
+			a[j]=temp;
+			return j;
+		}
+	}
 }
 
-void merge_sort(int a[], int low, int high) {
-    int mid;
-    if (low < high) {
-        mid = (low + high) / 2;
-        merge_sort(a, low, mid);
-        merge_sort(a, mid + 1, high);
-        simple_merge(a, low, mid, high);
-    }
-}
+output:
+Enter element:5
+3 2 9 4 1
+Elements  before sorting
+3 2 9 4 1
+Elements after sorting
+1 2 3 4 9
 
-int main() {
-    int a[10], n, i;
-    printf("Enter the number of elements: ");
-    scanf("%d", &n);
-
-    printf("Enter the elements:\n");
-
-program2:
+program:2
 #include<stdio.h>
 #include<conio.h>
 void simple_merge(int a[],int low,int mid,int high){
@@ -111,9 +117,13 @@ int main(){
 	printf("%d\t",a[i]);
 }
 
-
-
-
+output:
+Enter the no of elements:4
+1 9 6 3
+Elements before sorting
+1 9 6 3
+sorted elements
+1 3 6 9
 
 
 program 3:
@@ -148,9 +158,8 @@ count++;
 } 
 printf("total cost is %d",cost); 
 } 
-void main() 
+int main() 
 { 
-clrscr(); 
 printf("enter the number of nodes in the graph\n"); 
 scanf("%d",&n); 
 printf("entr the cost adjacency matrix\n"); 
@@ -162,7 +171,7 @@ visited[i]=0;
 } 
 prims(); 
 getch(); 
-} 
+}
 
 OUTPUT:enter the number of nodes in the graph 
 6 
@@ -182,7 +191,6 @@ total cost is 15
 
 
 program 4:
-
 #include<stdio.h> 
 #include<conio.h> 
 int minm(int m,int n) 
@@ -215,11 +223,10 @@ dest[v]=minm(dest[v],(dest[w]+cost[w][v]));
 } 
 } 
 } 
-void main() 
+int main() 
 { 
 int source,i,j,n; 
 int cost[20][20],dest[20]; 
-clrscr(); 
 printf("enter no of vertices\n"); 
 scanf("%d",&n); 
 printf("enter source vertex\n"); 
@@ -232,7 +239,7 @@ sssp(cost,n,source,dest);
 printf(":the shortest distance is \n");for(i=1;i<=n;i++) 
 printf("the cost from %d to %d is %d\t", source,i,dest[i]); 
 getch(); 
-} 
+}
 OUTPUT 
 enter no of vertices 
 5 
@@ -253,7 +260,6 @@ the cost from 1 to 5 is 6
 
 
 program:5
-
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
@@ -308,10 +314,9 @@ flag=0;
 }
 return flag;
 }
-void main()
+int main()
 {
 int result,n,a[10][10];;
-clrscr();
 printf("enter the number of nodes\n");
 scanf("%d",&n);
 printf("enter the adjacency matrix\n");
@@ -343,7 +348,6 @@ enter the adjacency matrix
 the graph is not connected
 
 program:6
-
 #include<stdio.h>
 #include<conio.h>
 int p[10],w[10],n;
@@ -361,10 +365,9 @@ int max(int a,int b)
 {
 return(a>b)?a:b;
 }
-void main()
+int main()
 {
 int i,m,profit;
-clrscr();
 printf("Enter number of objects\n");
 scanf("%d",&n);
 printf("Enter weight & profit\n");
@@ -387,10 +390,9 @@ Enter weight & profit
 10 15
 Enter Knapsack capacity
 116
-Maximum profit ear
+Maximum profit earned=38
 
 program:7
-
 #include<stdio.h> 
 int n,c[10][10],i,j,k,d[10][10]; 
 void read_data(); 
@@ -450,7 +452,7 @@ printf("\n");
 int min(int a,int b) 
 { 
 return a<b?a:b; 
-} 
+}
 OUTPUT 
 enter the number of nodes 
 4 
@@ -464,11 +466,93 @@ the distance matrix is shown below
 999 0 6 9 
 999 4 0 3 
 999 1 7 0 
-5 
-2 
-1 
-1 
-2 
-3 
+
+
+program:8
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#define TRUE 1
+#define FALSE 0
+void print_solution(int n,int x[])
+{
+int c[10][10],i,j;
+for(i=1;i<=n;i++)
+{
+for(j=1;j<=n;j++)
+c[i][j]='X';
+
+}
+for(i=1;i<=n;i++)
+{
+c[i][x[i]]='Q';
+}
+for(i=1;i<=n;i++)
+{
+for(j=1;j<=n;j++)
+{
+printf("%c",c[i][j]);
+}
+printf("\n\n");
+}
+}
+int place(int x[],int k)
+{
+int i;
+for(i=1;i<k;i++)
+{
+if(x[i]==x[k]||(i-x[i]==k-x[k])||(i+x[i])==(k+x[k]))
+return FALSE;
+}
+return TRUE;
+}
+void nqueens(int n)
+{
+int x[10],count=0,k=1;
+x[k]=0;
+while(k!=0)
+{
+x[k]+=1;
+while((x[k]<=n)&&(!place(x,k)))
+x[k]+=1;
+if(x[k]<=n)
+{
+if(k==n)
+{
+count++;
+printf("solution=%d\n",count);
+print_solution(n,x);
+}
+else
+{
+k++;
+x[k]=0;
+}
+}
+else
+k--;
+}
+}
+int main()
+{
+int n;
+printf("enter the no.of queens\n");
+scanf("%d",&n);
+nqueens(n);
+getch();
+}
+output:
+enter the number of queens
 4
+Solution: 1
+X Q X X
+X X X Q
+Q X X X
+X X Q X
+
+Solution: 2
+X X Q X
+Q X X X
+X X X Q
+X Q X X
 
