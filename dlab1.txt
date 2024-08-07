@@ -1,0 +1,102 @@
+
+create database lab1_db;
+use lab1_db;
+create table employee_tb(
+empno int ,
+empname char(50),
+job char(40),
+managerno int ,
+sal bigint,
+commission bigint
+);
+desc employee_tb;
+truncate employee_tb;
+begin;
+insert into employee_tb
+values(100,'bindhu','developer',01,50000,10000);
+savepoint sp1; 
+insert into employee_tb
+values (101,'keerthu','developer',02,50000,10000);
+savepoint sp2;
+insert into employee_tb
+values (103,'vidhuu','tester',01,40000,10000);
+
+select * from employee_tb;
+rollback to sp1;
+select * from employee_tb;
+alter table employee_tb
+modify empno int primary key;
+
+alter table employee_tb
+modify empname char(50) not null,
+modify job char(40) not null,
+modify managerno int  not null,
+modify sal bigint not null,
+modify commission bigint not null;
+desc employee_tb;
+
+insert into employee_tb
+values (104,'aa','bbb',02,null,10000);
+use test2;
+create table employee(
+emp_no int primary key,
+ename char(50) not null,
+job char(50) not null,
+mgr varchar(5) not null,
+salry bigint not null
+);
+desc employee;
+drop database db9;
+drop table employee;
+alter table employee
+add column commission bigint not null;
+desc employee;
+insert into employee values
+('101','abc','developer','m101',1000,5000),
+('102','bcd','developer','m101',200000,100000),
+('103','def','tester','m102',40000,10000),
+('104','fgh','tester','m102',100000,50000),
+('105','hgj','tester','m102',40000,100000);
+select*from employee;
+update employee
+set job='developer',mgr='m101',salry=100000,
+commission=2000
+where emp_no='103';
+select*from employee;
+alter table employee
+rename column mgr to manager_id;
+desc employee;
+delete from employee
+where emp_no='105';
+
+create database db12;
+use test1;
+drop database db12;
+CREATE TABLE Employee (
+  E_id INT primary key,
+  E_name CHAR(255)not null,
+  Age INT check(age>=18 and age<=160),
+  Salary bigint
+);
+desc Employee;
+drop table Employee;
+INSERT INTO Employee (E_id, E_name, Age, Salary)
+VALUES
+(1, 'John Doe', 30, 50000.00),
+(2, 'Jane Smith', 28, 40000.00),
+(3, 'Bob Johnson', 35, 60000.00),
+(4, 'Maria Rodriguez', 25, 35000.00),
+(5, 'David Lee', 40, 70000.00);
+select *from employee;
+SELECT COUNT(E_name) AS Total_Employees
+FROM Employee;
+SELECT MAX(Age) AS Maximum_Age
+FROM Employee;
+SELECT MIN(Age) AS Minimum_Age
+FROM Employee;
+SELECT Salary
+FROM Employee
+group by Salary
+ORDER BY Salary ASC;
+select Salary from employee
+group by salary;
