@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity
                     {
                         if (i == TextToSpeech.SUCCESS)
                         {
-                            tts.speak(textData.getText().toString(), TextToSpeech.QUEUE_ADD, null, null);
+                            tts.speak(edt.getText().toString(), TextToSpeech.QUEUE_ADD, null, null);
                         }
                     }
 
