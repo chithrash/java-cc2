@@ -1,0 +1,90 @@
+        android:text="Implicit Intent"
+        android:onClick="openweb"
+        android:text="Open Call"
+        android:onClick="openmap"
+    public void openweb(View view) {
+        Intent i1=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        startActivity(i1);
+    }
+
+    public void opencall(View view) {
+        Intent i2=new Intent(Intent.ACTION_VIEW, Uri.parse("tel:6567567675"));
+        startActivity(i2);
+    }
+
+    public void openmap(View view) {
+        Intent i3=new Intent(Intent.ACTION_VIEW, Uri.parse("geo:20.5937,78.9629"));
+        startActivity(i3);
+    }
+}
+        android:text="Login Activity"
+android:hint="Username"
+android:ems="10"
+        android:hint="Password"
+        android:text="Login"
+        android:onClick="dotask"
+public class MainActivity extends AppCompatActivity {
+    EditText unm,pw;
+    @Override
+        unm=(EditText) findViewById(R.id.e1);
+        pw=(EditText) findViewById(R.id.e2);
+    }
+
+    public void dotask(View view) {
+        if(unm.getText().toString().equals("Admin")&&pw.getText().toString().equals("1234"))
+        {
+            Intent i1=new Intent(this,Second.class);
+            startActivity(i1);
+        }
+        else
+        {
+            Toast.makeText(this,"Login unsuccessful",Toast.LENGTH_LONG).show();
+        }
+    }
+}
+        android:text="Simple Calculator"
+        android:hint="number1"
+        android:hint="number2"
+        android:text="+"
+        android:onClick="Add"
+    EditText edt1,edt2;
+    TextView output;
+    int number1,number2;
+        edt1=(EditText) findViewById(R.id.e1);
+        edt2=(EditText) findViewById(R.id.e2);
+        output=(TextView) findViewById(R.id.t1);
+    }
+
+    public void Add(View view) {
+        number1=Integer.parseInt(edt1.getText().toString());
+        number2=Integer.parseInt(edt2.getText().toString());
+        output.setText(String.valueOf(number1+number2));
+    }
+  android:hint="Enter your Text"
+        android:onClick="voice"
+        android:text="Click Here"
+    EditText edt;
+    TextToSpeech tts;
+    @Override
+        edt = (EditText) findViewById(R.id.e1);
+
+    }
+    public void voice(View view)
+    {
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener()
+                {
+                    @Override
+                    public void onInit(int i)
+                    {
+                        if (i == TextToSpeech.SUCCESS)
+                        {
+                            tts.speak(textData.getText().toString(), TextToSpeech.QUEUE_ADD, null, null);
+                        }
+                    }
+
+                });
+    }
+}
+
+
+
